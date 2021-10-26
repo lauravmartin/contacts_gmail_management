@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains contacts_gmail_management.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function contacts_gmail_management_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tbo_account module.
+    case 'help.page.contacts_gmail_management':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows to get Gmail Contacts using PEOPLE API from GOOGLE APIS Library') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function contacts_gmail_management_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'google_api_settings_form' && $form['google_api']['source']['#default_value'] == ''){
+    $form['google_api']['source']['#default_value'] = '0';
+  }
+}
+
+

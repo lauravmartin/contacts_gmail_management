@@ -1,0 +1,6 @@
+name: Contacts Gmail Management
+type: module
+description:  Gmail Contacts Management
+core_version_requirement: '^8 || ^9'
+package: Google APIS
+

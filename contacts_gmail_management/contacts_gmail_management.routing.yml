@@ -1,0 +1,21 @@
+goggle_api_settings:
+  path: '/admin/config/google_api/settings'
+  defaults:
+    _title: 'Google Api Configuration Form'
+    _form: '\Drupal\contacts_gmail_management\Form\GoogleApiConfigurationForm'
+  requirements:
+    _permission: 'access content'
+  options:
+    _admin_route: TRUE
+
+contacts_gmail_management.recieve_token:
+  path: '/import/contacts'
+  defaults:
+    _controller: '\Drupal\contacts_gmail_management\Controller\ImportGmailContactController::getOAuthCode'
+    _title: ''
+  requirements:
+    _permission: 'access content'
+  methods: ['GET']
+  no_cache: 'TRUE'
+
+
