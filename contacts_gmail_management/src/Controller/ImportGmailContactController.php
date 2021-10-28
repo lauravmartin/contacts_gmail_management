@@ -136,10 +136,10 @@ class ImportGmailContactController extends ControllerBase {
       ],]);
     $result = json_decode((string)$data->getBody());
     foreach ($result->connections as $item) {
-      if (isset($item->emailAddresses)) {
+        if (isset($item->emailAddresses[0]->value) && filter_var($item->emailAddresses[0]->value, FILTER_VALIDATE_EMAIL)) {
         $object = [
           'photo' => new FormattableMarkup('<img width="36" height="36"  src="@image" style="border-radius: 50%"/>', ['@image' => $item->photos[0]->url]),
-          'name' => isset($item->names[0]->displayName) ? $item->names[0]->displayName : '',
+          'name' => isset($item->names[0]->displayName) ? $item->names[0]->displayName : $item->emailAddresses[0]->value,
           'email' => $item->emailAddresses[0]->value,
         ];
         array_push($contacts, $object);
@@ -169,10 +169,10 @@ class ImportGmailContactController extends ControllerBase {
       ],]);
     $result = json_decode((string)$data->getBody());
     foreach ($result->otherContacts as $item) {
-      if (isset($item->emailAddresses)) {
+        if (isset($item->emailAddresses[0]->value) && filter_var($item->emailAddresses[0]->value, FILTER_VALIDATE_EMAIL)) {
         $object = [
           'photo' => new FormattableMarkup('<img width="36" height="36"  src="@image" style="border-radius: 50%"/>', ['@image' => $item->photos[0]->url]),
-          'name' => (isset($item->names[0]->displayName) || $item->names[0]->displayName == '') ? $item->names[0]->displayName : $item->emailAddresses[0]->value,
+          'name' => (isset($item->names[0]->displayName) || $item->names[0]->displayName != '') ? $item->names[0]->displayName : $item->emailAddresses[0]->value,
           'email' => $item->emailAddresses[0]->value,
         ];
         array_push($contacts, $object);
