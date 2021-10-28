@@ -17,4 +17,6 @@ https://www.googleapis.com/auth/contacts.readonly
 - Gmail other contacts
 https://www.googleapis.com/auth/contacts.other.readonly
 
+Select option "Address book" or "Other contacts" in Google Api Configuration form if you want to get contacts from one of these categories.
 
+![Gmail contacts module - video](https://user-images.githubusercontent.com/39375370/139271864-48e55b22-7cb9-426a-9466-1879e5b439a5.gif)
